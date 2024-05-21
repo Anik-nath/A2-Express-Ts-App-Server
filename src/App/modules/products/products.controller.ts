@@ -24,20 +24,45 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const getAllProducts = async (req: Request, res: Response) => {
-  try {
-    const result = await productServices.getAllProductsDB();
-    res.status(200).json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    });
-  } catch (error) {
-    if (error) {
-      res.status(500).json({
+  const searchTerm = req.query.searchTerm;
+  if (!searchTerm) {
+    // for fetch all the product
+    try {
+      const result = await productServices.getAllProductsDB();
+      res.status(200).json({
         success: true,
-        message: 'Product fetched Failed!',
-        error,
+        message: 'Products fetched successfully!',
+        data: result,
       });
+    } catch (error) {
+      if (error) {
+        res.status(500).json({
+          success: true,
+          message: 'Product fetched Failed!',
+          error,
+        });
+      }
+    }
+  } else {
+    // for fetch product by searchTerm
+    try {
+      const result = await productServices.searchProductsDB(
+        searchTerm as string,
+      );
+
+      res.status(200).json({
+        success: true,
+        message: `Products matching search term '${searchTerm}' fetched successfully!`,
+        data: result,
+      });
+    } catch (error) {
+      if (error) {
+        res.status(500).json({
+          success: true,
+          message: 'Product search failed!',
+          error,
+        });
+      }
     }
   }
 };
@@ -111,6 +136,7 @@ const upadateSingleProduct = async (req: Request, res: Response) => {
     }
   }
 };
+
 export const productController = {
   createProduct,
   getAllProducts,

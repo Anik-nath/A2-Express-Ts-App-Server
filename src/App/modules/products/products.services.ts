@@ -29,6 +29,18 @@ const updateSingleProductFromDB = async (id: string, userData: Iproduct) => {
   );
   return result;
 };
+const searchProductsDB = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, 'i');
+  const result = await Product.find({
+    $or: [
+      { name: regex },
+      { description: regex },
+      { category: regex },
+      { tags: { $in: [regex] } },
+    ],
+  });
+  return result;
+};
 
 export const productServices = {
   createProductDB,
@@ -36,4 +48,5 @@ export const productServices = {
   getSignleProductFromDB,
   deleteSingleProductFromDB,
   updateSingleProductFromDB,
+  searchProductsDB,
 };

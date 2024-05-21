@@ -7,4 +7,18 @@ const createProductDB = async (productData: Iproduct) => {
   return result;
 };
 
-export const productServices = { createProductDB };
+const getAllProductsDB = async () => {
+  const result = await Product.find();
+  return result;
+};
+
+const getSignleProductFromDB = async (id: string) => {
+  const result = await Product.findOne({ _id: id });
+  return result;
+};
+
+export const productServices = {
+  createProductDB,
+  getAllProductsDB,
+  getSignleProductFromDB,
+};

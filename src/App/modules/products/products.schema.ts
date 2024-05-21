@@ -8,7 +8,7 @@ const variantSchema = new Schema<Variant>(
     type: { type: String, required: true },
     value: { type: String, required: true },
   },
-  { _id: false }
+  { _id: false },
 );
 // inventory schema
 const inventorySchema = new Schema<Inventory>(
@@ -16,7 +16,7 @@ const inventorySchema = new Schema<Inventory>(
     quantity: { type: Number, required: true },
     inStock: { type: Boolean, required: true },
   },
-  { _id: false }
+  { _id: false },
 );
 //product schema
 const productSchema = new Schema<Iproduct>(

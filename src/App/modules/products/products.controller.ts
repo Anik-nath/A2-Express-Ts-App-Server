@@ -22,4 +22,43 @@ const createProduct = async (req: Request, res: Response) => {
     }
   }
 };
-export const productController = { createProduct };
+
+const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const result = await productServices.getAllProductsDB();
+    res.status(200).json({
+      success: true,
+      message: 'Products fetched successfully!',
+      data: result,
+    });
+  } catch (error) {
+    if (error) {
+      res.status(500).json({
+        success: true,
+        message: 'Product retrive Failed!',
+        error,
+      });
+    }
+  }
+};
+
+const getSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await productServices.getSignleProductFromDB(productId);
+
+    res.status(200).json({
+      success: true,
+      message: `Product fetched successfully!`,
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const productController = {
+  createProduct,
+  getAllProducts,
+  getSingleProduct,
+};

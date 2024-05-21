@@ -28,7 +28,6 @@ const productSchema = new Schema<Iproduct>(
     tags: { type: [String], required: true },
     variants: { type: [variantSchema], required: true },
     inventory: { type: inventorySchema, required: true },
-    // isDeleted: { type: Boolean, default: false },
   },
   { versionKey: false },
 );

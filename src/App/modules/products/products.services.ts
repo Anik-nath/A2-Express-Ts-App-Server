@@ -21,10 +21,19 @@ const deleteSingleProductFromDB = async (id: string) => {
   const result = await Product.deleteOne({ _id: id });
   return result;
 };
+const updateSingleProductFromDB = async (id: string, userData: Iproduct) => {
+  const result = await Product.findByIdAndUpdate(
+    { _id: id },
+    { $set: userData },
+    { new: true },
+  );
+  return result;
+};
 
 export const productServices = {
   createProductDB,
   getAllProductsDB,
   getSignleProductFromDB,
   deleteSingleProductFromDB,
+  updateSingleProductFromDB,
 };

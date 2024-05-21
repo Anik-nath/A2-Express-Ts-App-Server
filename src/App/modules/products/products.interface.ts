@@ -1,18 +1,19 @@
-//1. make product interface 
+//1. make product interface
 export type Variant = {
-    type:string,
-    value:string
-}
+  type: string;
+  value: string;
+};
 export type Inventory = {
-    quantity:number,
-    inStock:boolean
-}
+  quantity: number;
+  inStock: boolean;
+};
 export type Iproduct = {
-name:string,
-description:string,
-price: number,
-category:string,
-tags:string[],
-variants: Variant[],
-inventory: Inventory,
-}
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  tags: string[];
+  variants: Variant[];
+  inventory: Inventory;
+//   isDeleted: boolean;
+};

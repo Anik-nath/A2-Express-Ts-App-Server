@@ -35,7 +35,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     if (error) {
       res.status(500).json({
         success: true,
-        message: 'Product retrive Failed!',
+        message: 'Product fetched Failed!',
         error,
       });
     }
@@ -53,7 +53,36 @@ const getSingleProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    if (error) {
+      res.status(500).json({
+        success: true,
+        message: 'Product fetched Failed!',
+        error,
+      });
+    }
+  }
+};
+
+const deleteSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = productServices.deleteSingleProductFromDB(productId);
+
+    if ((await result).deletedCount > 0) {
+      res.status(200).json({
+        success: true,
+        message: 'Product deleted successfully!',
+        data: null,
+      });
+    }
+  } catch (error) {
+    if (error) {
+      res.status(500).json({
+        success: true,
+        message: 'Product Delete Failed!',
+        error,
+      });
+    }
   }
 };
 
@@ -61,4 +90,5 @@ export const productController = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  deleteSingleProduct,
 };

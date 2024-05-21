@@ -1,12 +1,25 @@
 import { Request, Response } from 'express';
+import { productServices } from './products.services';
 
-const createProduct = (req: Request, res: Response) => {
+const createProduct = async (req: Request, res: Response) => {
   try {
-    //productServices.createProductDB ke call dibo.
-
-    res.send('Test POST request to the homepage before insert data');
+    const { product: productData } = req.body;
+    //call service
+    const result = await productServices.createProductDB(productData);
+    //send status
+    res.status(200).json({
+      success: true,
+      message: 'Product created successfully!',
+      data: result,
+    });
   } catch (error) {
-    console.log(error);
+    if (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Failed to create product!',
+        error,
+      });
+    }
   }
 };
 export const productController = { createProduct };

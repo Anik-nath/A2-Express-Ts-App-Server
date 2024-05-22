@@ -10,6 +10,7 @@ const createOrders = async (req: Request, res: Response) => {
     const zodValidateData = orderValidatdSchema.parse(orderData);
     const product = await Product.findById(zodValidateData.productId);
 
+    // conditions start here
     if (!product) {
       return errorhandler.productNotFoundHandler(req, res);
     } else if (zodValidateData.quantity > product.inventory.quantity) {

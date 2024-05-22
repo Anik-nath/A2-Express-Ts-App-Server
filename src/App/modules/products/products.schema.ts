@@ -1,4 +1,3 @@
-//2. make schema
 import { Schema } from 'mongoose';
 import { Inventory, Iproduct, Variant } from './products.interface';
 

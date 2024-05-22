@@ -1,4 +1,4 @@
-//1. make product interface
+// product interface
 export type Variant = {
   type: string;
   value: string;

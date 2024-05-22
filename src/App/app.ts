@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { productRoutes } from './modules/products/procducts.route';
 import { orderRoutes } from './modules/orders/orders.route';
+import { errorhandler } from './modules/errorHandler/error.handler';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(cors());
 
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.all('/*', errorhandler.notFoundHandler);
 
 app.get('/', (req: Request, res: Response) => {
   const assignmentNo: number = 2;

@@ -21,7 +21,10 @@ const createOrders = async (req: Request, res: Response) => {
       // update instock status
       if (product.inventory.quantity === 0) {
         product.inventory.inStock = false;
+      } else {
+        product.inventory.inStock = true;
       }
+      //save updated product
       await product.save();
       // create orders
       const result = await orderServices.createOrdersFromDb(zodValidateData);

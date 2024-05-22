@@ -1,17 +1,11 @@
 # How to run this project in your local machine
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Run](#run)
-- [Environment Variables](#environment-variables)
-
 ## Installation
 
 1. **Clone the repository**
 
    ```
-   git clone https://github.com/user/repository.git
+   git clone https://github.com/Anik-nath/A2-Express-Ts-App-Server.git
    cd repository
    ```
 
@@ -27,8 +21,19 @@
    PORT=5000
    DATABASEURL=[your mongodb connectiong url here]
    ```
-   - Ensure MongoDB is running
+   - Ensure MongoDB is running locally
 4. **Run**
    ```
    npm run start:dev
    ```
+5. **Show live**
+   copy and paste this link in browser or you can use postman 
+   ```
+   http://localhost:5000/ 
+   ```
+6. **All the routes to show**
+   - http://localhost:5000/api/products/ to show all products
+   - http://localhost:5000/api/products/664c4ef425cfd66798abe37c to show single product by id
+   - http://localhost:5000/api/products?searchTerm=iphone to search products
+   - http://localhost:5000/api/orders/ to show all orders
+   - http://localhost:5000/api/orders?email=anik@gmail.com to show orders by email
